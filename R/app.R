@@ -20,8 +20,8 @@ wpd.createBackend <- function() {
             
             # Host files from checked out WebPlotDigitizer
             reqFile <- req$PATH_INFO
-            packagePath <- system.file(package="digitizeR")        
-            filepath <- paste(packagePath, "tools/WebPlotDigitizer-3.8", reqFile, sep="/")
+            packagePath <- system.file('inst', package="digitizeR")        
+            filepath <- paste(packagePath, "wpd", reqFile, sep="/")
             
             # If the file is not found, then return a 404 code.
             message <- list(status = 404L, headers = list('Content-Type' = 'text/html'), body = 'error!')
