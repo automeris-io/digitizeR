@@ -6,13 +6,16 @@ WebPlotDigitizer powered R package for data extraction from images of plots, map
 Install
 -------
 
-If you don't already have devtools, then install using:
+This package is under heavy development, but uses a stable version of WebPlotDigitizer. If you want to give this a try, then follow these instructions:
 
-    install.packages("devtools")
+
+1) If you don't already have devtools, then install using:
+
+        install.packages("devtools")
     
-Next, install digitizeR using (Mac and Linux):
+2) Install digitizeR using (Mac and Linux):
 
-    devtools::install_github("ankitrohatgi/digitizeR")
+        devtools::install_github("ankitrohatgi/digitizeR")
 
 Contact
 -------
