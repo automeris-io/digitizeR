@@ -17,6 +17,8 @@ This package is under heavy development, but uses a stable version of WebPlotDig
 
         devtools::install_github("ankitrohatgi/digitizeR")
 
+NOTE: This has not been tested on Windows yet.
+
 Usage
 -----
 
