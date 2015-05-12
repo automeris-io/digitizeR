@@ -1,0 +1,15 @@
+Package: digitizeR
+Type: Package
+Title: Extract numerical data from images of plots, maps and other images.
+Version: 1.0
+Date: 2015-05-11
+Author: Ankit Rohatgi
+Maintainer: Ankit Rohatgi <ankitrohatgi@hotmail.com>
+Description: Host WebPlotDigitizer locally.
+License: GPL-3
+Depends: R (>= 3.1.0)
+Imports:
+    httpuv,
+    mime,
+    rjson,
+    Rook
