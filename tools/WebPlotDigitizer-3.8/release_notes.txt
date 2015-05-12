@@ -1,0 +1,196 @@
+RELEASE NOTES
+
+Version 3.8
+===========
+May 7, 2015
+
+New Features:
+
+- Added initial support for bar charts and histograms.
+- Context sensitive algorithm options in the UI.
+- Controls for measurement data made consistent with plot data.
+- Added button to show extended crosshair next to image zoom options.
+- Minor UI tweaks for better appearance across different platforms.
+- Use alpha channel in zoom view for smoother appearance. 
+
+Bug Fixes and code clean-up:
+
+- Code clean up based on JSHint suggestions.
+- Fixed missing data point metadata in JSON files.
+- Fix minor issues with graphics related to distance and angle measurements.
+- Graphics related code clean-up.
+- Fix minor issues related to blob detector algorithm.
+
+Version 3.7
+===========
+March 9, 2015
+
+Bug fixes:
+
+- Fixed multiple calibration issues with polar diagrams.
+- Fixed switching between tools using keyboard during distance and angle measurements.
+
+New Features:
+
+- Exported JSON now contains actual data values in addition to the pixels positions of the data points.
+- Added ability to load remote images sent via POST (not to be exposed on the website at the moment).
+- Chrome extension that can allow users to send any image on the internet to a locally hosted WebPlotDigitizer (not to be added to the Chrome store at the moment).
+
+Version 3.6
+===========
+Released January 17, 2015
+
+User Interface Improvements:
+
+- Draggable Popup Windows
+- Thanks to Zlatan Stanojevic: 
+    - Q and W keys can be used to select the next or previous data point when manually adjusting data points.
+    - Ability to change the column separator in the final CSV output.
+- Minor bug fixes and enhancements.
+
+Version 3.5
+===========
+Released November 11, 2014
+
+Bug Fixes:
+
+- Fixed broken dropdown menu for switching datasets in the automatic extraction sidebar.
+- Improved user script handling.
+- Improved X Step with Interpolation algorithm.
+- Other minor UI improvements.
+
+Version 3.4
+===========
+Released September 22, 2014
+
+New features:
+
+- Added ability to import and export calibration and digitized data via JSON files.
+- Added support for handling multiple datasets in a plot. Now data for each data series can be captured separately.
+- Equations to transform pixel positions to data points on the plot can now be viewed by selecting the 'Transformation Equations' option in the Axes menu.
+- Added ability to format numbers in the CSV output.
+- Added a button to quickly erase the entire mask when using the erase tool.
+
+Bug Fixes:
+
+- Fixed a very small CSV file size restriction in WebKit based browsers.
+- Simplified XY axes transformation code.
+- Code clean up in many places, minor performance improvements and UI tweaks.
+
+
+Version 3.3
+===========
+Released June 16, 2014
+
+- New detection algorithms:
+
+    - Added a new algorithm "X Step w/ Interp". This uses cubic splines to interpolate over data such as dotted/dashed lines and even data points. A smoothing parameter is also provided that controls the width in x-direction that the underlying detection is averaged over. A parameter value of 0 turns off this smoothing. Any value higher than zero will add some smoothing over the data.
+
+    - Added a blob detection algorithm. This allows detecting locating the centers of objects ("blobs") in an image. This also calculates the area and the first rotational invariant image moment of each blob. The Min_Distance and Max_Distance parameters help excluding objects that are smaller or larger than this range.
+
+- UI Tweaks:
+    - Visual busy indication when loading an image or when auto extract algorithm is running.
+    - Box mask drawing tool improved.
+    - Minor tweaks to improve usability on smaller screens.
+
+
+Version 3.2
+===========
+Released May 27, 2014
+
+- Color picker for FG and BG color also show a list of dominant colors in the image. 
+    - This makes it more convenient to select plots.
+    - In the future, the underlying algorithm will help improve automatic extraction.
+
+- Bug fixes: The following issues have been fixed:
+    - Under some screen resolutions, Firefox on Windows 7, would not show the zoom view or the sidebar buttons.
+    - Clicking "Run" for auto detect without making a mask would throw an error in the javascript console.
+        - Now, the entire image will be used by default if no mask is drawn.
+
+
+Version 3.1
+===========
+Released: May 14, 2014
+
+- Prevent browsers from caching HTML page of the app.
+
+
+Version 3.0
+===========
+Released: May 11, 2014
+
+A complete overhaul of the app was required to introduce some of the new features and improve maintainability.
+
+Plot display:
+    - Added ability to zoom in/out an image
+    - Graphics widget can now handle relatively larger images
+
+Zoom view:
+    - Larger zoom view
+    - Added ability to adjust magnification
+    - Added ability to change crosshair color
+
+Axes alignment:
+    - Added ability to adjust points using keyboard keys. Pressing shift along with cursor keys moves the points faster.
+    - Added labels for points which persist when alignment values are entered.
+    - Unit can be defined for map axes. This is useful when making distance measurements.
+
+Manual data acquisition:
+    - Points can now be adjusted using keyboard cursor keys
+
+Automatic data acquisition:
+    - New mask display and color selection views improve overall detection accuracy.
+    - Improved workflow eliminates the need for the popup window for fine tuning. These controls are now available from the sidebar itself.
+
+Data table:
+    - Digitized data can now be exported to a CSV file without the user having to copy-paste values.
+
+Measurements:
+    - Added ability to measure distances and angles in images. For map axes, the distances are calculated in the specified units.
+
+Scripts:
+    - Added preliminary support to allow custom user scripts
+
+Webcam support:
+    - Added webcam image capture ability (works only in Google Chrome or Firefox)
+
+Image Editing:
+    - Image editing functions (flip, crop etc.) have been temporarily hidden. These will be added back in the future releases.
+
+Detection algorithms:
+    - Only averaging window and X step are enabled in this version. Other algorithms will be included in a future release.
+
+Code improvements:
+    - New modular code structure improves maintainability and ease of adding new features
+    - Noticeable performance improvements in many areas
+    - More efficient use of memory
+
+UI improvements:
+    - Added button highlighting, cleaner stylesheets
+
+
+Version 2.6
+===========
+Released: October 20, 2013
+
+Handling Digitized Data:
+	- Added option to graph or analyze data in Plot.ly (http://plot.ly)
+	- Added options to sort data by ascending or descending order of variables
+	- Added option to sort data by nearest neighboring data point. This is useful for things like sketches and outlines.
+
+Automatic Data Extraction:
+	- Added algorithm (only for XY plots) which allows user to control the X points at which the data is to be digitized. This is useful for digitizing and comparing values from two curves in the same plot (for example).
+
+Support for Dates:
+	- Dates can be entered for XY plots. While calibration, dates have to be entered in yyyy/mm or yyyy/mm/dd format. The output can be formatted in a variety of formats. Support for time is under consideration for next release.
+
+Code improvements:
+	- Several improvements in the javascript code were made to ensure WPD continues to work with new browsers.
+	- Entire javascript is minified using the Closure compiler. This results in a significantly faster loading time for the app.
+	- Minor performance improvements.
+	- Minor clean up of the interface.
+
+Browser Support:
+	- WPD works in Internet Explorer 10 now.
+	- Clipboard copy-paste works for Google Chrome.
+

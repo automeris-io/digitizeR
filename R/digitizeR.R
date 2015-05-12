@@ -17,4 +17,5 @@ testList <- list(a = function() { print("a") })
 testFn <- function() {
     p <- rjson::fromJSON('{"x": 1}')
     print(p)
+    print(system.file(package="digitizeR"))
 }
