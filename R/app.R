@@ -14,13 +14,13 @@
 # along with digitizeR.  If not, see <http://www.gnu.org/licenses/>.
 
 
-.wpd.serverData <- list(
+wpd.serverData <- list(
         serverInstance = NULL,
         isOpen = FALSE,
         connectedClients = 0
     )
 
-.wpd.app <- list(
+wpd.app <- list(
     call = function(req) {                
         # Handle HTTP requests       
         

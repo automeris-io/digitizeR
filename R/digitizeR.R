@@ -17,7 +17,7 @@ wpd.settings <- list(location = '0.0.0.0', port = 8000)
 
 wpd.launch <- function() {
     # Start httpuv based server in the background
-    .wpd.serverData$serverInstance <<- httpuv::startDaemonizedServer(wpd.settings$location, wpd.settings$port, .wpd.app)
+    wpd.serverData$serverInstance <<- httpuv::startDaemonizedServer(wpd.settings$location, wpd.settings$port, wpd.app)
     
     # Construct the hosted URL link
     url <- 'http://'
@@ -31,17 +31,17 @@ wpd.launch <- function() {
     browseURL(url) # Launch browser with the WPD url
     
     cat('Starting WPD. If a browser window does not open, then browse to:', url, '\n')
-    .wpd.serverData$isOpen <<- TRUE
+    wpd.serverData$isOpen <<- TRUE
 }
 
 wpd.close <- function() {
     if (wpd.isOpen()) {
         cat("Shutting down WPD server\n")
         httpuv::stopDaemonizedServer(.wpd.serverData$serverInstance)
-        .wpd.serverData$isOpen <<- FALSE
+        wpd.serverData$isOpen <<- FALSE
     }
 }
 
 wpd.isOpen <- function() {
-    return(.wpd.serverData$isOpen)
+    return(wpd.serverData$isOpen)
 }
