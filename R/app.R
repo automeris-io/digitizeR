@@ -13,7 +13,7 @@
 # You should have received a copy of the GNU General Public License
 # along with digitizeR.  If not, see <http://www.gnu.org/licenses/>.
 
-wpd.createBackend <- function() {    
+.wpd.createBackend <- function() {    
     backend <- list(
         call = function(req) {                
             # Handle HTTP requests       

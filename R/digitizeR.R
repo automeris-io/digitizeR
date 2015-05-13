@@ -13,13 +13,44 @@
 # You should have received a copy of the GNU General Public License
 # along with digitizeR.  If not, see <http://www.gnu.org/licenses/>.
 
+#' digitizeR: Tool to extract numerical data from images of plots, maps etc.
+#' 
+#' The digitizeR package provides a web based interface (WebPlotDigitizer) to interactively extract 
+#' numerical data from images of plots, maps, microscope images etc. Some tools to make simple distance
+#' and angle measurements are also available. In the future, this package will also allow 
+#' real-time interaction between R and the hosted web application via WebSockets.
+#' 
+#' @section Available Functions:
+#' 
+#' \itemize{
+#'      \item \code{\link{wpd.launch}}: Start HTTP server that hosts WebPlotDigitizer and 
+#'      open the local URL in the browser.
+#'      \item \code{\link{wpd.close}}: Shutdown the HTTP server.
+#'      \item \code{\link{wpd.isOpen}}: Check is the HTTP server is currently running.
+#' }
+#'   
+#' 
+#' @docType package
+#' @name digitizeR
+NULL
 
+#' Start a local HTTP server that hosts WebPlotDigitizer. 
+#' This will also open a browser window pointing to the local URL.
+#' 
+#' @param location IP address or machine name of the server. Defaults to "0.0.0.0".
+#' @param port Port number of the HTTP server. Defaults to 8000.
+#' @return Server handle that is later used to shutdown the server using wpd.close()
+#' @export
+#' @examples
+#' app = wpd.launch()
+#' app = wpd.launch(port=8080)
+#' app = wpd.launch(location="192.168.1.100", port=8080)
 wpd.launch <- function(location = '0.0.0.0', port = 8000) {
         
     app <- new.env()
     
     # Start httpuv based server in the background
-    app$backend = wpd.createBackend()
+    app$backend = .wpd.createBackend()
     
     app$serverInstance <- httpuv::startDaemonizedServer(location, port, app$backend)
     
@@ -39,7 +70,12 @@ wpd.launch <- function(location = '0.0.0.0', port = 8000) {
     return(app)
 }
 
-
+#' Shutdown the HTTP server that is currently hosting WebPlotDigitizer.
+#' 
+#' @param app Server handle that was obtained by executing wpd.launch()
+#' @export
+#' @examples
+#' wpd.close(app)
 wpd.close <- function(app) {
     if (app$isOpen) {
         cat("Shutting down WPD server\n")
@@ -48,6 +84,10 @@ wpd.close <- function(app) {
     }
 }
 
+#' Check if the HTTP server is currently running.
+#' 
+#' @param app Server handle that was obtained by executng wpd.launch()
+#' @export
 wpd.isOpen <- function(app) {
     return(app$isOpen)
 }
