@@ -13,14 +13,14 @@ This package is under heavy development, but uses a stable version of WebPlotDig
 
         install.packages("devtools")
     
-2) Install digitizeR using (Mac and Linux):
-
+    For details, refer to https://github.com/hadley/devtools
+    
+2) Install digitizeR (Linux/Mac/Windows):
+    
         devtools::install_github("ankitrohatgi/digitizeR")
-
-NOTE: This has not been tested on Windows yet.
-
-Usage
------
+        
+Use
+---
 
 No real-time communication has been implemented at the moment, but you can launch and close WPD using the following:
 
