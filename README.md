@@ -13,8 +13,6 @@ This package is under heavy development, but uses a stable version of WebPlotDig
 
         install.packages("devtools")
     
-    For details, refer to https://github.com/hadley/devtools
-    
 2) Install digitizeR (Linux/Mac/Windows):
     
         devtools::install_github("ankitrohatgi/digitizeR")
