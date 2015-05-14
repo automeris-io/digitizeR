@@ -39,7 +39,7 @@ Change default server location and port:
 Goals
 -----
 
-At the moment, this package only lets you start (and stop) WebPlotDigitizer, but eventually, I would like to add R functions that can communicate with the app in real-time (using WebSockets). A few examples of what is possible in the future is as follows:
+At the moment, this package only lets you start (and stop) WebPlotDigitizer, but eventually, I would like to add R functions that can communicate with the app in real-time (using WebSockets). A few examples of what is possible in the future are as follows:
 
     ds <- wpd.getDatasets(app)                  # fetch all digitized data as a data frame.
     wpd.loadImage(app, 'my_plot.jpg')           # load an image file programmatically.
