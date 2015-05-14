@@ -1,7 +1,7 @@
 digitizeR
 ---------
 
-WebPlotDigitizer powered R package for data extraction from images of plots, maps etc.
+[WebPlotDigitizer](http://arohatgi.info/WebPlotDigitizer) powered R package for data extraction from images of plots, maps etc.
 
 Install
 -------
