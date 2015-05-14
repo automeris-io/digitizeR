@@ -24,7 +24,7 @@ No real-time communication has been implemented at the moment, but you can launc
 
 Launch a local instance of WebPlotDigitizer:
 
-    app = wpd.launch()
+    app <- wpd.launch()
     
 This starts a httpuv based server on your machine. This should also open the local URL in a browser window.
 
@@ -34,8 +34,19 @@ Close server instance:
 
 Change default server location and port:
 
-    app = wpd.launch(location="192.168.1.100", port=8080) # for example
+    app <- wpd.launch(location="192.168.1.100", port=8080) # for example
 
+Goals
+-----
+
+At the moment, this package only lets you start (and stop) WebPlotDigitizer, but eventually, I would like to add R functions that can communicate with the app in real-time (using WebSockets). A few examples of what is possible in the future is as follows:
+
+    ds <- wpd.getDatasets(app)                  # fetch all digitized data as a data frame.
+    wpd.loadImage(app, 'my_plot.jpg')           # load an image file programmatically.
+    wpd.loadPDF(app, 'thesis.pdf', page=5)      # load a specific page from a PDF file.
+    wpd.calibrate(app, 'calibration_data.json') # align the axes to pixels using some calibration data.
+    
+    # and so on.
 
 Contact
 -------

@@ -42,9 +42,9 @@ NULL
 #' @return Server handle that is later used to shutdown the server using wpd.close()
 #' @export
 #' @examples
-#' app = wpd.launch()
-#' app = wpd.launch(port=8080)
-#' app = wpd.launch(location="192.168.1.100", port=8080)
+#' app <- wpd.launch()
+#' app <- wpd.launch(port=8080)
+#' app <- wpd.launch(location="192.168.1.100", port=8080)
 wpd.launch <- function(location = '0.0.0.0', port = 8000) {
         
     app <- new.env()
