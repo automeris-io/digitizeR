@@ -22,6 +22,10 @@ Use
 
 No real-time communication has been implemented at the moment, but you can launch and close WPD using the following:
 
+Load library:
+
+    library('digitizeR')
+
 Launch a local instance of WebPlotDigitizer:
 
     app <- wpd.launch()
