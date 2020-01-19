@@ -14,10 +14,10 @@ real-time interaction between R and the hosted web application via WebSockets.
 
 
 \itemize{
-     \item \code{\link{wpd.launch}}: Start HTTP server that hosts WebPlotDigitizer and 
+     \item \code{\link{wpd_launch}}: Start HTTP server that hosts WebPlotDigitizer and 
      open the local URL in the browser.
-     \item \code{\link{wpd.close}}: Shutdown the HTTP server.
-     \item \code{\link{wpd.isOpen}}: Check is the HTTP server is currently running.
+     \item \code{\link{wpd_close}}: Shutdown the HTTP server.
+     \item \code{\link{wpd_isOpen}}: Check is the HTTP server is currently running.
 }
 }
 
