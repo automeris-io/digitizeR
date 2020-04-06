@@ -1,14 +1,23 @@
 #' Read WebPlotDigitizer JSON data
-#' 
-#' @param txt Input txt as readable by fromJSON
+#'
+#' @inheritParams rjson::fromJSON
 #' @param include_pixel Include the pixel data in the returned data frame
 #' @return A data.frame with colums for \code{x}, \code{y}, and \code{DataSet}
 #'   and optionally (if \code{include_pixel=TRUE}) \code{x_pixel} and
 #'   \code{y_pixel}.
 #' @export
 #' @importFrom rjson fromJSON
-read_wpd <- function(txt, include_pixel=FALSE) {
-  rawdata <- rjson::fromJSON(txt)
+read_wpd <- function(json_str, file, include_pixel=FALSE) {
+  rawdata <-
+    if (!missing(json_str) & !missing(file)) {
+      stop("Must supply only one of `jsob_str` or `file`.")
+    } else if (!missing(json_str)) {
+      rjson::fromJSON(json_str=json_str)
+    } else if (!missing(file)) {
+      rjson::fromJSON(file=file)
+    } else {
+      stop("Must supply one of `json_str` or `file`.")
+    }
   if (identical(names(rawdata), "wpd")) {
     if (!identical(rawdata$version, c(3, 8))) {
       warning("read_wpd has only been tested with WebPlotDigitizer version 3.8 files when data looks like WPD version 3")
@@ -33,11 +42,33 @@ read_wpd_3 <- function(jsondata, include_pixel=FALSE) {
 }
 
 read_wpd_4 <- function(jsondata, include_pixel=FALSE) {
-  normalize_wpd_data.list(
-    data=jsondata$datasetColl$data,
-    data_name=jsondata$datasetColl$name,
-    include_pixel=include_pixel
-  )
+  if ("datasetColl" %in% names(jsondata)) {
+    if (is.null(names(jsondata$datasetColl))) {
+      ret <- list()
+      for (idx in seq_along(jsondata$datasetColl)) {
+        current_data <-
+          do.call(
+            rbind,
+            lapply(
+              X=jsondata$datasetColl[[idx]]$data,
+              FUN=data_row_to_data_frame
+            )
+          )
+        current_data$DataSet <- jsondata$datasetColl[[idx]]$name
+        if (!include_pixel) {
+          current_data$x_pixel <- current_data$y_pixel <- NULL
+        }
+        ret <- append(ret, list(current_data))
+      }
+      ret
+    } else {
+      normalize_wpd_data.list(
+        data=jsondata$datasetColl$data,
+        data_name=jsondata$datasetColl$name,
+        include_pixel=include_pixel
+      )
+    }
+  }
 }
 
 normalize_wpd_data.list <- function(data, data_name, include_pixel=FALSE) {
@@ -79,4 +110,13 @@ normalize_wpd_data.data.frame <- function(data, data_name, include_pixel=FALSE) 
     ret$x_pixel <- ret$y_pixel <- NULL
   }
   ret
+}
+
+data_row_to_data_frame <- function(x) {
+  data.frame(
+    x_pixel=x$x,
+    y_pixel=x$y,
+    x=x$value[[1]],
+    y=x$value[[2]]
+  )
 }
