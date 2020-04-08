@@ -23,10 +23,10 @@
 #' @section Available Functions:
 #' 
 #' \itemize{
-#'      \item \code{\link{wpd.launch}}: Start HTTP server that hosts WebPlotDigitizer and 
+#'      \item \code{\link{wpd_launch}}: Start HTTP server that hosts WebPlotDigitizer and 
 #'      open the local URL in the browser.
-#'      \item \code{\link{wpd.close}}: Shutdown the HTTP server.
-#'      \item \code{\link{wpd.isOpen}}: Check is the HTTP server is currently running.
+#'      \item \code{\link{wpd_close}}: Shutdown the HTTP server.
+#'      \item \code{\link{wpd_isOpen}}: Check is the HTTP server is currently running.
 #' }
 #'   
 #' 
@@ -39,18 +39,18 @@ NULL
 #' 
 #' @param location IP address or machine name of the server. Defaults to "0.0.0.0".
 #' @param port Port number of the HTTP server. Defaults to 8000.
-#' @return Server handle that is later used to shutdown the server using wpd.close()
+#' @return Server handle that is later used to shutdown the server using wpd_close()
 #' @export
 #' @examples
-#' app <- wpd.launch()
-#' app <- wpd.launch(port=8080)
-#' app <- wpd.launch(location="192.168.1.100", port=8080)
-wpd.launch <- function(location = '0.0.0.0', port = 8000) {
+#' app <- wpd_launch()
+#' app <- wpd_launch(port=8080)
+#' app <- wpd_launch(location="192.168.1.100", port=8080)
+wpd_launch <- function(location = '0.0.0.0', port = 8000) {
         
     app <- new.env()
     
     # Start httpuv based server in the background
-    app$backend = .wpd.createBackend()
+    app$backend = .wpd_createBackend()
     
     app$serverInstance <- httpuv::startDaemonizedServer(location, port, app$backend)
     
@@ -72,11 +72,11 @@ wpd.launch <- function(location = '0.0.0.0', port = 8000) {
 
 #' Shutdown the HTTP server that is currently hosting WebPlotDigitizer.
 #' 
-#' @param app Server handle that was obtained by executing wpd.launch()
+#' @param app Server handle that was obtained by executing wpd_launch()
 #' @export
 #' @examples
-#' wpd.close(app)
-wpd.close <- function(app) {
+#' wpd_close(app)
+wpd_close <- function(app) {
     if (app$isOpen) {
         cat("Shutting down WPD server\n")
         httpuv::stopDaemonizedServer(app$serverInstance)
@@ -86,8 +86,8 @@ wpd.close <- function(app) {
 
 #' Check if the HTTP server is currently running.
 #' 
-#' @param app Server handle that was obtained by executng wpd.launch()
+#' @param app Server handle that was obtained by executng wpd_launch()
 #' @export
-wpd.isOpen <- function(app) {
+wpd_isOpen <- function(app) {
     return(app$isOpen)
 }
