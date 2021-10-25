@@ -13,5 +13,7 @@ wpd_close(app)
 Shutdown the HTTP server that is currently hosting WebPlotDigitizer.
 }
 \examples{
+\dontrun{
 wpd_close(app)
+}
 }

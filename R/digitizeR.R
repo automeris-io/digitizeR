@@ -42,9 +42,11 @@ NULL
 #' @return Server handle that is later used to shutdown the server using wpd_close()
 #' @export
 #' @examples
+#' \dontrun{
 #' app <- wpd_launch()
 #' app <- wpd_launch(port=8080)
 #' app <- wpd_launch(location="192.168.1.100", port=8080)
+#' }
 wpd_launch <- function(location = '0.0.0.0', port = 8000) {
         
     app <- new.env()
@@ -63,7 +65,7 @@ wpd_launch <- function(location = '0.0.0.0', port = 8000) {
     }
     url <- paste(url, ':', port, '/index.html', sep='')
     
-    browseURL(url) # Launch browser with the WPD url
+    utils::browseURL(url) # Launch browser with the WPD url
     
     cat('Starting WPD. If a browser window does not open, then browse to:', url, '\n')
     app$isOpen <- TRUE
@@ -75,7 +77,9 @@ wpd_launch <- function(location = '0.0.0.0', port = 8000) {
 #' @param app Server handle that was obtained by executing wpd_launch()
 #' @export
 #' @examples
+#' \dontrun{
 #' wpd_close(app)
+#' }
 wpd_close <- function(app) {
     if (app$isOpen) {
         cat("Shutting down WPD server\n")
