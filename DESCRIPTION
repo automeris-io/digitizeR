@@ -2,7 +2,6 @@ Package: digitizeR
 Type: Package
 Title: Tool to extract numerical data from images of plots, maps etc.
 Version: 1.0
-Date: 2015-05-11
 Authors@R: person("Ankit", "Rohatgi", email = "ankitrohatgi@hotmail.com", role = c("aut", "cre"))
 Maintainer: Ankit Rohatgi <ankitrohatgi@hotmail.com>
 Description: Locally hosted WebPlotDigitizer that helps with interactive digitization of plots
@@ -18,4 +17,5 @@ Imports:
     mime,
     rjson,
     Rook
-RoxygenNote: 7.1.0
+RoxygenNote: 7.1.2
+Encoding: UTF-8
