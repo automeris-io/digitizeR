@@ -20,7 +20,9 @@ Start a local HTTP server that hosts WebPlotDigitizer.
 This will also open a browser window pointing to the local URL.
 }
 \examples{
+\dontrun{
 app <- wpd_launch()
 app <- wpd_launch(port=8080)
 app <- wpd_launch(location="192.168.1.100", port=8080)
+}
 }
