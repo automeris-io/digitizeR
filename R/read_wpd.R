@@ -19,7 +19,7 @@ read_wpd <- function(json_str, file, include_pixel=FALSE) {
       stop("Must supply one of `json_str` or `file`.")
     }
   if (identical(names(rawdata), "wpd")) {
-    if (!identical(rawdata$version, c(3, 8))) {
+    if (!identical(rawdata$wpd$version, c(3, 8))) {
       warning("read_wpd has only been tested with WebPlotDigitizer version 3.8 files when data looks like WPD version 3")
     }
     read_wpd_3(rawdata$wpd, include_pixel=include_pixel)
@@ -34,33 +34,54 @@ read_wpd <- function(json_str, file, include_pixel=FALSE) {
 }
 
 read_wpd_3 <- function(jsondata, include_pixel=FALSE) {
-  normalize_wpd_data.list(
-    data=jsondata$dataSeries$data,
-    data_name=jsondata$dataSeries$name,
-    include_pixel=include_pixel
-  )
+  if (!is.null(jsondata$distanceMeasurementData)) {
+    warning("Ignoring distance data (submit an example file if this is important to you)")
+  }
+  if (!is.null(jsondata$angleMeasurementData)) {
+    warning("Ignoring distance data (submit an example file if this is important to you)")
+  }
+  if (is.null(jsondata$dataSeries$name)) {
+    unnamed_list_to_df_list(
+      jsondata=jsondata$dataSeries,
+      include_pixel=include_pixel
+    )
+  } else {
+    normalize_wpd_data.list(
+      data=jsondata$dataSeries$data,
+      data_name=jsondata$dataSeries$name,
+      include_pixel=include_pixel
+    )
+  }
+}
+
+# Convert an unnamed list to a list of data.frames
+unnamed_list_to_df_list <- function(jsondata, include_pixel=FALSE) {
+  ret <- list()
+  for (idx in seq_along(jsondata)) {
+    current_data <-
+      do.call(
+        rbind,
+        lapply(
+          X=jsondata[[idx]]$data,
+          FUN=data_row_to_data_frame
+        )
+      )
+    current_data$DataSet <- jsondata[[idx]]$name
+    if (!include_pixel) {
+      current_data$x_pixel <- current_data$y_pixel <- NULL
+    }
+    ret <- append(ret, list(current_data))
+  }
+  ret
 }
 
 read_wpd_4 <- function(jsondata, include_pixel=FALSE) {
   if ("datasetColl" %in% names(jsondata)) {
     if (is.null(names(jsondata$datasetColl))) {
-      ret <- list()
-      for (idx in seq_along(jsondata$datasetColl)) {
-        current_data <-
-          do.call(
-            rbind,
-            lapply(
-              X=jsondata$datasetColl[[idx]]$data,
-              FUN=data_row_to_data_frame
-            )
-          )
-        current_data$DataSet <- jsondata$datasetColl[[idx]]$name
-        if (!include_pixel) {
-          current_data$x_pixel <- current_data$y_pixel <- NULL
-        }
-        ret <- append(ret, list(current_data))
-      }
-      ret
+      unnamed_list_to_df_list(
+        jsondata=jsondata$datasetColl,
+        include_pixel=include_pixel
+      )
     } else {
       normalize_wpd_data.list(
         data=jsondata$datasetColl$data,
