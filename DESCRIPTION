@@ -17,5 +17,6 @@ Imports:
     mime,
     rjson,
     Rook
-RoxygenNote: 7.1.2
+RoxygenNote: 7.2.3
 Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
