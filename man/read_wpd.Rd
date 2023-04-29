@@ -15,8 +15,8 @@ read_wpd(json_str, file, include_pixel = FALSE)
 }
 \value{
 A data.frame with colums for \code{x}, \code{y}, and \code{DataSet}
-  and optionally (if \code{include_pixel=TRUE}) \code{x_pixel} and
-  \code{y_pixel}.
+and optionally (if \code{include_pixel=TRUE}) \code{x_pixel} and
+\code{y_pixel}.
 }
 \description{
 Read WebPlotDigitizer JSON data
