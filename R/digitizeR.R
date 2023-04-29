@@ -15,15 +15,16 @@
 
 #' digitizeR: Tool to extract numerical data from images of plots, maps etc.
 #'
-#' The digitizeR package provides a web based interface (WebPlotDigitizer) to interactively extract 
-#' numerical data from images of plots, maps, microscope images etc. Some tools to make simple distance
-#' and angle measurements are also available. In the future, this package will also allow 
-#' real-time interaction between R and the hosted web application via WebSockets.
+#' The digitizeR package provides a web based interface (WebPlotDigitizer) to
+#' interactively extract numerical data from images of plots, maps, microscope
+#' images etc. Some tools to make simple distance and angle measurements are
+#' also available. In the future, this package will also allow real-time
+#' interaction between R and the hosted web application via WebSockets.
 #'
 #' @section Available Functions:
 #'
 #' \itemize{
-#'      \item [wpd_launch()]: Start HTTP server that hosts WebPlotDigitizer and 
+#'      \item [wpd_launch()]: Start HTTP server that hosts WebPlotDigitizer and
 #'      open the local URL in the browser.
 #'      \item [wpd_close()]: Shutdown the HTTP server.
 #'      \item [wpd_isOpen()]: Check is the HTTP server is currently running.
@@ -34,7 +35,7 @@
 #' @name digitizeR
 NULL
 
-#' Start a local HTTP server that hosts WebPlotDigitizer. 
+#' Start a local HTTP server that hosts WebPlotDigitizer.
 #' This will also open a browser window pointing to the local URL.
 #'
 #' @param location IP address or machine name of the server. Defaults to "0.0.0.0".
@@ -53,7 +54,7 @@ wpd_launch <- function(location = '0.0.0.0', port = 8000) {
 
     # Start httpuv based server in the background
     app$backend = .wpd_createBackend()
-    
+
     app$serverInstance <- httpuv::startDaemonizedServer(location, port, app$backend)
 
     # Construct the hosted URL link
@@ -89,7 +90,7 @@ wpd_close <- function(app) {
 }
 
 #' Check if the HTTP server is currently running.
-#' 
+#'
 #' @param app Server handle that was obtained by executng wpd_launch()
 #' @export
 wpd_isOpen <- function(app) {
