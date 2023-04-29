@@ -23,10 +23,10 @@
 #' @section Available Functions:
 #' 
 #' \itemize{
-#'      \item \code{\link{wpd_launch}}: Start HTTP server that hosts WebPlotDigitizer and 
+#'      \item [wpd_launch()]: Start HTTP server that hosts WebPlotDigitizer and 
 #'      open the local URL in the browser.
-#'      \item \code{\link{wpd_close}}: Shutdown the HTTP server.
-#'      \item \code{\link{wpd_isOpen}}: Check is the HTTP server is currently running.
+#'      \item [wpd_close()]: Shutdown the HTTP server.
+#'      \item [wpd_isOpen()]: Check is the HTTP server is currently running.
 #' }
 #'   
 #' 
