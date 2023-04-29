@@ -2,7 +2,7 @@
 % Please edit documentation in R/digitizeR.R
 \name{wpd_launch}
 \alias{wpd_launch}
-\title{Start a local HTTP server that hosts WebPlotDigitizer. 
+\title{Start a local HTTP server that hosts WebPlotDigitizer.
 This will also open a browser window pointing to the local URL.}
 \usage{
 wpd_launch(location = "0.0.0.0", port = 8000)
@@ -16,7 +16,7 @@ wpd_launch(location = "0.0.0.0", port = 8000)
 Server handle that is later used to shutdown the server using wpd_close()
 }
 \description{
-Start a local HTTP server that hosts WebPlotDigitizer. 
+Start a local HTTP server that hosts WebPlotDigitizer.
 This will also open a browser window pointing to the local URL.
 }
 \examples{

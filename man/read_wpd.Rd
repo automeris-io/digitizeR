@@ -11,12 +11,11 @@ read_wpd(json_str, file, include_pixel = FALSE)
 
 \item{file}{the name of a file to read the json_str from; this can also be a URL. Only one of json_str or file must be supplied.}
 
-\item{include_pixel}{Include the pixel data in the returned data frame}
+\item{include_pixel}{Include the pixel data in the returned data frame.}
 }
 \value{
-A data.frame with colums for \code{x}, \code{y}, and \code{DataSet}
-  and optionally (if \code{include_pixel=TRUE}) \code{x_pixel} and
-  \code{y_pixel}.
+A data.frame with colums for \code{x}, \code{y}, and \code{DataSet} and optionally
+(if \code{include_pixel=TRUE}) \code{x_pixel} and \code{y_pixel}.
 }
 \description{
 Read WebPlotDigitizer JSON data

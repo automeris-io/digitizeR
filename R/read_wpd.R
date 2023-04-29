@@ -1,10 +1,9 @@
 #' Read WebPlotDigitizer JSON data
 #'
 #' @inheritParams rjson::fromJSON
-#' @param include_pixel Include the pixel data in the returned data frame
-#' @return A data.frame with colums for \code{x}, \code{y}, and \code{DataSet}
-#'   and optionally (if \code{include_pixel=TRUE}) \code{x_pixel} and
-#'   \code{y_pixel}.
+#' @param include_pixel Include the pixel data in the returned data frame.
+#' @return A data.frame with colums for `x`, `y`, and `DataSet` and optionally
+#'        (if `include_pixel=TRUE`) `x_pixel` and `y_pixel`.
 #' @export
 #' @importFrom rjson fromJSON
 read_wpd <- function(json_str, file, include_pixel=FALSE) {

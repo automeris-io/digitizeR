@@ -5,19 +5,19 @@
 \alias{digitizeR}
 \title{digitizeR: Tool to extract numerical data from images of plots, maps etc.}
 \description{
-The digitizeR package provides a web based interface (WebPlotDigitizer) to interactively extract 
-numerical data from images of plots, maps, microscope images etc. Some tools to make simple distance
-and angle measurements are also available. In the future, this package will also allow 
-real-time interaction between R and the hosted web application via WebSockets.
+The digitizeR package provides a web based interface (WebPlotDigitizer) to
+interactively extract numerical data from images of plots, maps, microscope
+images etc. Some tools to make simple distance and angle measurements are
+also available. In the future, this package will also allow real-time
+interaction between R and the hosted web application via WebSockets.
 }
 \section{Available Functions}{
 
-
 \itemize{
-     \item \code{\link{wpd_launch}}: Start HTTP server that hosts WebPlotDigitizer and 
-     open the local URL in the browser.
-     \item \code{\link{wpd_close}}: Shutdown the HTTP server.
-     \item \code{\link{wpd_isOpen}}: Check is the HTTP server is currently running.
+\item \code{\link[=wpd_launch]{wpd_launch()}}: Start HTTP server that hosts WebPlotDigitizer and
+open the local URL in the browser.
+\item \code{\link[=wpd_close]{wpd_close()}}: Shutdown the HTTP server.
+\item \code{\link[=wpd_isOpen]{wpd_isOpen()}}: Check is the HTTP server is currently running.
 }
 }
 
